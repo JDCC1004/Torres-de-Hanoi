@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="525.0" prefWidth="642.0">
+         <children>
+            <Button layoutX="419.0" layoutY="441.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" text="Resolver" />
+            <Button layoutX="110.0" layoutY="441.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" text="Reiniciar" />
+            <ComboBox layoutX="344.0" layoutY="288.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ComboBox>
+            <Label layoutX="178.0" layoutY="288.0" prefHeight="25.0" prefWidth="117.0" text="Número de Discos" textAlignment="JUSTIFY" />
+            <TabPane layoutX="77.0" layoutY="14.0" prefHeight="200.0" prefWidth="110.0" tabClosingPolicy="UNAVAILABLE" />
+            <TableView layoutX="110.0" layoutY="14.0" prefHeight="200.0" prefWidth="127.0">
+              <columns>
+                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Torre A" />
+              </columns>
+            </TableView>
+            <TableView layoutX="294.0" layoutY="14.0" prefHeight="200.0" prefWidth="127.0">
+               <columns>
+                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Torre B" />
+               </columns>
+            </TableView>
+            <TableView layoutX="474.0" layoutY="21.0" prefHeight="200.0" prefWidth="127.0">
+               <columns>
+                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Torre C" />
+               </columns>
+            </TableView>
+            <Button alignment="CENTER" layoutX="123.0" layoutY="221.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="41.0" text="B" />
+            <Button alignment="CENTER" layoutX="187.0" layoutY="221.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="41.0" text="C" />
+            <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="123.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="187.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" />
+            <Button alignment="CENTER" layoutX="302.0" layoutY="221.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="41.0" text="A" />
+            <Button alignment="CENTER" layoutX="370.0" layoutY="221.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="41.0" text="C" />
+            <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="302.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="370.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" />
+            <Button alignment="CENTER" layoutX="488.0" layoutY="228.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="41.0" text="A" />
+            <Button alignment="CENTER" layoutX="553.0" layoutY="228.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="41.0" text="B" />
+            <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="488.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="553.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" />
+            <Label alignment="CENTER" layoutX="137.0" layoutY="338.0" prefHeight="25.0" prefWidth="141.0" text="Movimientos Mínimos" />
+            <Label alignment="CENTER" layoutX="348.0" layoutY="338.0" prefHeight="25.0" prefWidth="141.0" textAlignment="CENTER" />
+            <Label alignment="CENTER" layoutX="137.0" layoutY="383.0" prefHeight="25.0" prefWidth="141.0" text="Movimientos" />
+            <Label alignment="CENTER" layoutX="348.0" layoutY="383.0" prefHeight="25.0" prefWidth="141.0" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
