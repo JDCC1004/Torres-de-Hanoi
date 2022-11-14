@@ -28,7 +28,7 @@ public class InicioController {
 
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/trabajofinalprogramacion/imgs/Inicio.png")));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/trabajofinalprogramacion/Juego.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/trabajofinalprogramacion/Usuario.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
