@@ -1,13 +1,11 @@
 package com.example.trabajofinalprogramacion.controller;
 
+import com.example.trabajofinalprogramacion.logic.Nombre;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -16,8 +14,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
-
-import static java.time.chrono.HijrahChronology.INSTANCE;
 
 public class ScoreController {
 
@@ -28,10 +24,15 @@ public class ScoreController {
     private Button btnJuego;
 
     @FXML
+    private static Label lblNombre;
+
+    private Nombre nombre = new Nombre();
+
+    @FXML
     private TableView<ScoreController> tablaContenido;
 
     @FXML
-    private TableColumn<ScoreController, String> colNum;
+    private TableColumn<ScoreController, String> colNumero;
 
     @FXML
     private TableColumn<ScoreController, String> colNombre;
@@ -44,18 +45,19 @@ public class ScoreController {
 
     @FXML
     public void initialize(){
-        llenarTabla(INSTANCE.getDiplomado().buscar(null, null, null));
-        colNum.setCellValueFactory(new PropertyValueFactory<>("Número"));
+        colNumero.setCellValueFactory(new PropertyValueFactory<>("Número"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
         colScore.setCellValueFactory(new PropertyValueFactory<>("Score"));
-        //tablaContenido.getSelectionModel().selectedItemProperty().addListener((observable -> llenarCampos(newValue)));
+        tablaContenido.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> llenarCampos(newValue.getNombre));
     }
 
-    public void llenarCampos(ScoreController scorecontroller){
-        scoreNuevo = scorecontroller;
-        if(scorecontroller != null){
+    public void llenarCampos(String Nombre){
+        lblNombre.setText(Nombre);
+        nombre.setNombre(Nombre);
+        //scoreNuevo = scorecontroller;
+        //if(scorecontroller != null){
             //tfNombre.setText(scorecontroller.getNombre);
-        }
+        //}
     }
 
     @FXML

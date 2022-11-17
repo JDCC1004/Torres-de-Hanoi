@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#SalirUsuario" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinalprogramacion.controller.UsuarioController">
    <children>
-      <TextField fx:id="tfNombre" layoutX="225.0" layoutY="174.0" onKeyPressed="#teclaPresionada" />
+      <TextField fx:id="tfNombre" layoutX="225.0" layoutY="174.0" />
       <Label alignment="CENTER" layoutX="236.0" layoutY="94.0" prefHeight="35.0" prefWidth="127.0" text="Ingresa tu nombre" />
+      <Button fx:id="btnJugar" layoutX="270.0" layoutY="282.0" mnemonicParsing="false" onAction="#OnActionJugar" prefHeight="35.0" prefWidth="59.0" text="Jugar!!" />
+      <Label fx:id="aviso" alignment="CENTER" layoutX="209.0" layoutY="222.0" prefHeight="35.0" prefWidth="181.0" text="¡¡ Debe ingresar un nombre !!" textFill="#ef0404" visible="false" />
    </children>
 </AnchorPane>

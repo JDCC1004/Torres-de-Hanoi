@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,6 +21,7 @@
                   <TableColumn fx:id="colScore" prefWidth="98.66668701171875" text="Puntuación" />
               </columns>
             </TableView>
+            <Label fx:id="lblNombre" layoutX="286.0" layoutY="267.0" />
          </children>
       </AnchorPane>
    </children>

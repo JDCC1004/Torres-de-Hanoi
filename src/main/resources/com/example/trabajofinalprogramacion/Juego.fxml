@@ -13,8 +13,8 @@
    <children>
       <AnchorPane onKeyPressed="#SalirJuego" prefHeight="525.0" prefWidth="642.0">
          <children>
-            <Button layoutX="419.0" layoutY="441.0" mnemonicParsing="false" onAction="#OnActionResolver" prefHeight="35.0" prefWidth="110.0" text="Resolver" />
-            <Button fx:id="btnReiniciar" layoutX="110.0" layoutY="441.0" mnemonicParsing="false" onAction="#OnActionReiniciar" prefHeight="35.0" prefWidth="110.0" text="Reiniciar" />
+            <Button layoutX="452.0" layoutY="441.0" mnemonicParsing="false" onAction="#OnActionResolver" prefHeight="35.0" prefWidth="110.0" text="Resolver" />
+            <Button fx:id="btnReiniciar" layoutX="82.0" layoutY="441.0" mnemonicParsing="false" onAction="#OnActionReiniciar" prefHeight="35.0" prefWidth="110.0" text="Reiniciar" />
             <Label alignment="CENTER" layoutX="137.0" layoutY="338.0" prefHeight="25.0" prefWidth="141.0" text="Movimientos Mínimos" />
             <Label fx:id="MovMin" alignment="CENTER" layoutX="348.0" layoutY="338.0" prefHeight="25.0" prefWidth="141.0" textAlignment="CENTER" />
             <Label alignment="CENTER" layoutX="137.0" layoutY="383.0" prefHeight="25.0" prefWidth="141.0" text="Movimientos" />
@@ -36,7 +36,8 @@
             </GridPane>
             <ComboBox fx:id="comboBox" layoutX="344.0" layoutY="301.0" onAction="#saveDiscos" prefWidth="150.0" />
             <Label alignment="CENTER" layoutX="137.0" layoutY="301.0" prefHeight="25.0" prefWidth="141.0" text="Número Discos" />
-            <Label fx:id="Score" alignment="CENTER" layoutX="354.0" layoutY="250.0" prefHeight="25.0" prefWidth="141.0" textAlignment="CENTER" />
+            <Label fx:id="Score" alignment="CENTER" layoutX="250.0" layoutY="250.0" prefHeight="25.0" prefWidth="141.0" textAlignment="CENTER" />
+            <Button fx:id="btnPuntuacion" layoutX="266.0" layoutY="441.0" mnemonicParsing="false" onAction="#OnActionPuntuacion" prefHeight="35.0" prefWidth="110.0" text="Puntuaciones" />
          </children>
       </AnchorPane>
    </children>
