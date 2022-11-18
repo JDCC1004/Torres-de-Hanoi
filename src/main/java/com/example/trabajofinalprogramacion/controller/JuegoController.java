@@ -3,18 +3,14 @@ package com.example.trabajofinalprogramacion.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,17 +18,11 @@ import java.util.Objects;
 
 public class JuegoController{
 
-
-    //private int k = 0;
     private int n;
 
     private int puntuacion = 500;
 
     private int puntuacionFinal;
-
-    private int i = n;
-
-    private int j = 3;
 
     private int contNumMov = 0;
 
@@ -40,39 +30,15 @@ public class JuegoController{
 
     @FXML
     private Button btnPuntuacion;
-    @FXML
-    private ImageView id00;
-    @FXML
-    private ImageView id20;
-    @FXML
-    private ImageView id10;
-    @FXML
-    private ImageView id01;
-    @FXML
-    private ImageView id11;
-    @FXML
-    private ImageView id21;
-    @FXML
-    private ImageView id02;
-    @FXML
-    private ImageView id12;
-    @FXML
-    private ImageView id22;
 
     @FXML
-    private Label MovMin;
+    private VBox v1, v2, v3;
 
     @FXML
-    private Label Mov;
-
-    @FXML
-    private Label Score;
+    private Label MovMin, Mov, Score;
 
     @FXML
     private ComboBox<Integer> comboBox;
-
-    @FXML
-    private GridPane torresGrid;
 
     public void initialize(){
         comboBox.getItems().addAll(3,4,5,6,7,8,9,10);
@@ -80,12 +46,89 @@ public class JuegoController{
         comboBox.setEditable(false);
     }
 
-    /**public void generarTablas() {
-
-        for (int i = 0, i < comboBox.getValue(); i++){
-            lbl[i] = new Label(" Label 1 " +(i+1));
+    boolean discoTomado = false;
+    @FXML
+    void onPressedVbox(MouseEvent event) {
+        VBox v = (VBox) event.getSource();
+        String idV = v.getId();
+        System.out.println(idV);
+        if (!discoTomado){
+            cogerDisco(idV);
+        }else {
+            ponerDisco(idV);
         }
-    }**/
+    }
+    String auxLabel = "";
+    void cogerDisco (String identificador) {
+        if (identificador == v1.getId() && v1.getChildren().size() != 0){
+            Label aux = (Label) v1.getChildren().get(0);
+            auxLabel = aux.getText();
+            v1.getChildren().remove(0);
+            discoTomado = true;
+        } else if (identificador == v2.getId() && v2.getChildren().size() != 0) {
+            Label aux = (Label) v2.getChildren().get(0);
+            auxLabel = aux.getText();
+            v2.getChildren().remove(0);
+            discoTomado = true;
+        } else if (identificador == v3.getId() && v3.getChildren().size() != 0) {
+            Label aux = (Label) v3.getChildren().get(0);
+            auxLabel = aux.getText();
+            v3.getChildren().remove(0);
+            discoTomado = true;
+        }
+    }
+    void ponerDisco(String identificador){
+        if (discoTomado){
+            Label label = new Label();
+            label.setText(auxLabel);
+            switch (identificador){
+                case "v1":
+                    validarDisco(v1, label);
+                    contNumMov ++;
+                    break;
+                case "v2":
+                    validarDisco(v2, label);
+                    contNumMov ++;
+                    break;
+                case "v3":
+                    validarDisco(v3, label);
+                    contNumMov ++;
+                    break;
+                default:
+                    System.out.println(".");
+                    break;
+            }
+        }
+    }
+
+    void validarDisco (VBox vh, Label l) {
+        if (vh.getChildren().size() == 0){
+            vh.getChildren().add(l);
+            discoTomado = false;
+        }
+        else {
+            Label label = (Label) vh.getChildren().get(0);
+            String s = label.getText();
+            if (auxLabel.length() < s.length()){
+                vh.getChildren().add(0, l);
+                discoTomado = false;
+            }
+        }
+    }
+
+    public void generarTablas() {
+
+        for (int k = 0; k < comboBox.getValue(); k++) {
+            Label label = new Label();
+            String x = "";
+            for (int l = 0; l < k+1; l++) {
+                x = x + "*";
+            }
+            label.setText(x);
+            label.setStyle("-fx-font-size: 15");
+            v1.getChildren().add(label);
+        }
+    }
 
     @FXML
     protected void OnActionResolver(){
@@ -114,6 +157,28 @@ public class JuegoController{
         System.out.println(""+n);
         MovMin.setText("" +n);
         Score.setText("" +puntuacion);
+        generarTablas();
+    }
+
+    public void v1Event(MouseEvent event) {
+        if (event.isPrimaryButtonDown()) {
+            contNumMov++;
+        }
+        Mov.setText("" +contNumMov);
+    }
+
+    public void v2Event(MouseEvent event) {
+        if (event.isPrimaryButtonDown()) {
+            contNumMov++;
+        }
+        Mov.setText("" +contNumMov);
+    }
+
+    public void v3Event(MouseEvent event) {
+        if (event.isPrimaryButtonDown()) {
+            contNumMov++;
+        }
+        Mov.setText("" +contNumMov);
     }
 
     public void Puntaje(){
@@ -150,98 +215,6 @@ public class JuegoController{
                 break;
         }
     }
-
-    public void iv00() {
-        id00.setVisible(false);
-        id22.setVisible(true);
-    }
-
-    public void iv20(MouseEvent mouseEvent) {
-
-    }
-
-    public void iv10(MouseEvent mouseEvent) {
-
-    }
-
-    public void iv01(MouseEvent mouseEvent) {
-        id01.setVisible(false);
-        id12.setVisible(true);
-        //contNumMov++;
-    }
-
-    public void iv11(MouseEvent mouseEvent) {
-
-    }
-
-    public void iv21(MouseEvent mouseEvent) {
-
-    }
-
-    public void iv02(MouseEvent mouseEvent) {
-        id02.setVisible(false);
-        id22.setVisible(true);
-        //contNumMov++;
-    }
-
-    public void iv12(MouseEvent mouseEvent) {
-
-    }
-
-    public void iv22(MouseEvent mouseEvent) {
-        id22.setVisible(false);
-        id11.setVisible(true);
-        //contNumMov++;
-    }
-
-    public void gridPaneEvent(MouseEvent event) {
-        if (event.isPrimaryButtonDown()) {
-            contNumMov++;
-        }
-
-        Mov.setText("" +contNumMov);
-    }
-
-    /**
-     * public void llenarGridPane () {
-     * GridPane[][] torresGrid = new GridPane[i][j];
-     * for (i = 0; i < torresGrid.length; i++) {
-     * for (j = 0; j < torresGrid.length; j++) {
-     * GridPane[][] GridPane = new GridPane[0][];
-     * torresGrid[i] = GridPane[i][j];
-     * }
-     * }
-     * }
-     *
-     * @return
-     **/
-
-    public static GridPane llenarGridPane(int rows) {
-        GridPane torresGrid = new GridPane();
-
-        //rows = Integer.parseInt(comboBox.getValue().toString());
-
-        for (int i = 0; i < rows; i++) {
-                TextField textField = new TextField();
-                textField.setAlignment(Pos.CENTER);
-
-                torresGrid.add(textField, 0, i);
-
-                GridPane.setMargin(textField, new Insets(5));
-                textField.setText("Prueba 1");
-
-            }
-            torresGrid.setAlignment(Pos.CENTER);
-
-            return torresGrid;
-
-            /**filas = Integer.parseInt(comboBox.getValue().toString());
-             col = 3;
-
-             GridPane = new int[filas][col];
-
-             GridPane.setColumnIndex(String.valueOf(comboBox.getValue()));**/
-        }
 
     @FXML
     protected void OnActionPuntuacion(ActionEvent event) throws IOException {

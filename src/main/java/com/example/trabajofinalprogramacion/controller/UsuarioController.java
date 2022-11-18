@@ -26,7 +26,7 @@ public class UsuarioController {
     private TextField tfNombre;
     @FXML
     private Button btnJugar;
-    public ScoreController scoreController;
+    public ScoreController controller;
 
     @FXML
      void OnActionJugar(ActionEvent event) throws IOException {
@@ -38,7 +38,7 @@ public class UsuarioController {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/trabajofinalprogramacion/Juego.fxml"));
             Parent root = fxmlLoader.load();
-            //ScoreController scoreController = fxmlLoader.getController();
+            //ScoreController controller = fxmlLoader.getController();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -47,13 +47,16 @@ public class UsuarioController {
             stage.setResizable(false);
             stage.show();
 
-            scoreController.llenarCampos(tfNombre1);
+            tfNombre1 = tfNombre.getText();
+            System.out.println("Bienvenido " +tfNombre1);
+
+            controller.llenarCampos(tfNombre1);
 
             Stage stage2 = (Stage) this.btnJugar.getScene().getWindow();
             stage2.close();
         }
-    }
 
+    }
 
     @FXML
     public void SalirUsuario(KeyEvent event){

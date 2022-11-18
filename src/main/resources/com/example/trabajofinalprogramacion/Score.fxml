@@ -21,7 +21,7 @@
                   <TableColumn fx:id="colScore" prefWidth="98.66668701171875" text="Puntuación" />
               </columns>
             </TableView>
-            <Label fx:id="lblNombre" layoutX="286.0" layoutY="267.0" />
+            <Label fx:id="lblNombre" layoutX="265.0" layoutY="266.0" prefHeight="17.0" prefWidth="69.0" />
          </children>
       </AnchorPane>
    </children>

@@ -9,7 +9,7 @@
    <children>
       <TextField fx:id="tfNombre" layoutX="225.0" layoutY="174.0" />
       <Label alignment="CENTER" layoutX="236.0" layoutY="94.0" prefHeight="35.0" prefWidth="127.0" text="Ingresa tu nombre" />
-      <Button fx:id="btnJugar" layoutX="270.0" layoutY="282.0" mnemonicParsing="false" onAction="#OnActionJugar" prefHeight="35.0" prefWidth="59.0" text="Jugar!!" />
       <Label fx:id="aviso" alignment="CENTER" layoutX="209.0" layoutY="222.0" prefHeight="35.0" prefWidth="181.0" text="¡¡ Debe ingresar un nombre !!" textFill="#ef0404" visible="false" />
+      <Button fx:id="btnJugar" layoutX="262.0" layoutY="275.0" mnemonicParsing="false" onAction="#OnActionJugar" prefHeight="35.0" prefWidth="75.0" text="Jugar" />
    </children>
 </AnchorPane>
