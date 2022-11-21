@@ -3,18 +3,14 @@ package com.example.trabajofinalprogramacion.controller;
 import com.example.trabajofinalprogramacion.logic.Nombre;
 import com.example.trabajofinalprogramacion.logic.Puntaje;
 import com.example.trabajofinalprogramacion.logic.añadirContenido;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.FileOutputStream;
@@ -33,10 +29,7 @@ public class ScoreController {
     private Button btnJuego;
 
     @FXML
-    private Label puntos, lbl1;
-
-    @FXML
-    private VBox vNumero;
+    private Label lbl1;
 
     private Nombre nombre = new Nombre();
 
@@ -46,7 +39,6 @@ public class ScoreController {
 
     }
     public ScoreController(){
-        //puntaje1 = Integer.parseInt(lbl1.getText());
         Puntaje puntaje;
         puntaje = new Puntaje(20);
 
