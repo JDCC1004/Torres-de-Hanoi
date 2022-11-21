@@ -1,6 +1,9 @@
 package com.example.trabajofinalprogramacion.controller;
 
 import com.example.trabajofinalprogramacion.logic.Nombre;
+import com.example.trabajofinalprogramacion.logic.Puntaje;
+import com.example.trabajofinalprogramacion.logic.añadirContenido;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,12 +13,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Objects;
 
 public class ScoreController {
+
+    //String puntaje1;
 
     @FXML
     private Button btnInicio;
@@ -24,41 +33,39 @@ public class ScoreController {
     private Button btnJuego;
 
     @FXML
-    private static Label lblNombre;
+    private Label puntos, lbl1;
+
+    @FXML
+    private VBox vNumero;
 
     private Nombre nombre = new Nombre();
 
-    @FXML
-    private TableView<ScoreController> tablaContenido;
+    public void llenarCampos(String puntos1){
+        lbl1.setText(puntos1);
+        nombre.setNombre(puntos1);
 
-    @FXML
-    private TableColumn<ScoreController, String> colNumero;
+    }
+    public ScoreController(){
+        //puntaje1 = Integer.parseInt(lbl1.getText());
+        Puntaje puntaje;
+        puntaje = new Puntaje(20);
 
-    @FXML
-    private TableColumn<ScoreController, String> colNombre;
+        try{
+            ObjectOutputStream op = new ObjectOutputStream(new FileOutputStream("puntaje.txt"));
+            op.writeObject(puntaje);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
 
-    @FXML
-    private TableColumn<ScoreController, String> colScore;
-
-    private ScoreController scoreNuevo;
-    private String getNombre;
-
-    @FXML
-    public void initialize(){
-        colNumero.setCellValueFactory(new PropertyValueFactory<>("Número"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        colScore.setCellValueFactory(new PropertyValueFactory<>("Score"));
-        tablaContenido.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> llenarCampos(newValue.getNombre));
+        try{
+            ObjectOutputStream op = new añadirContenido(new FileOutputStream("puntaje.txt", true));
+            op.writeObject(new Puntaje(30));
+            op.writeObject(new Puntaje(40));
+        }catch (IOException e){
+            e.printStackTrace(System.out);
+        }
     }
 
-    public void llenarCampos(String Nombre){
-        lblNombre.setText(Nombre);
-        nombre.setNombre(Nombre);
-        //scoreNuevo = scorecontroller;
-        //if(scorecontroller != null){
-            //tfNombre.setText(scorecontroller.getNombre);
-        //}
-    }
 
     @FXML
     protected void OnActionInicio() throws IOException {

@@ -1,5 +1,6 @@
 package com.example.trabajofinalprogramacion.controller;
 
+import com.example.trabajofinalprogramacion.logic.Nombre;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,24 +19,33 @@ import java.util.Objects;
 
 public class JuegoController{
 
-    private int n;
+    private static int n;
 
     private int puntuacion = 500;
 
     private int puntuacionFinal;
 
-    private int contNumMov = 0;
+    private static int contNumMov = 0;
 
     private int numMinMov = 0;
 
+    private int Objetivo = 0;
+
+    private int puntos;
+
+    private Nombre nombre = new Nombre();
+
     @FXML
-    private Button btnPuntuacion;
+    private Button btnTerminar;
+
+    @FXML
+    private Button btnReiniciar;
 
     @FXML
     private VBox v1, v2, v3;
 
     @FXML
-    private Label MovMin, Mov, Score;
+    private Label MovMin, Mov, Score, nom;
 
     @FXML
     private ComboBox<Integer> comboBox;
@@ -44,6 +54,11 @@ public class JuegoController{
         comboBox.getItems().addAll(3,4,5,6,7,8,9,10);
         comboBox.setValue(0);
         comboBox.setEditable(false);
+    }
+
+    public void llenarNombre(String nom1){
+        nom.setText(nom1);
+        nombre.setNombre(nom1);
     }
 
     boolean discoTomado = false;
@@ -85,14 +100,19 @@ public class JuegoController{
                 case "v1":
                     validarDisco(v1, label);
                     contNumMov ++;
+                    puntuacion = puntuacion + 50;
                     break;
                 case "v2":
                     validarDisco(v2, label);
                     contNumMov ++;
+                    puntuacion = puntuacion + 50;
+
                     break;
                 case "v3":
                     validarDisco(v3, label);
                     contNumMov ++;
+                    puntuacion = puntuacion + 50;
+
                     break;
                 default:
                     System.out.println(".");
@@ -132,6 +152,17 @@ public class JuegoController{
 
     @FXML
     protected void OnActionResolver(){
+        for (int k = 0; k < comboBox.getValue(); k++) {
+            Label label = new Label();
+            String x = "";
+            for (int l = 0; l < k+1; l++) {
+                x = x + "*";
+            }
+            label.setText(x);
+            label.setStyle("-fx-font-size: 15");
+            v1.getChildren().clear();
+            v3.getChildren().add(label);
+        }
     }
 
     @FXML
@@ -142,8 +173,10 @@ public class JuegoController{
                 MovMin.setText("0");
                 contNumMov = 0;
                 Mov.setText("0");
-                puntuacionFinal = puntuacion * 5;
-                System.out.println(puntuacionFinal);
+                Score.setText("" +puntuacionFinal);
+                v1.getChildren().clear();
+                v2.getChildren().clear();
+                v3.getChildren().clear();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -151,7 +184,7 @@ public class JuegoController{
     }
 
     public void saveDiscos(ActionEvent event){
-        int Objetivo = Integer.parseInt(comboBox.getValue().toString());
+        Objetivo = Integer.parseInt(comboBox.getValue().toString());
         n = (int) (Math.pow(2, Objetivo) -1);
         System.out.println("N° Discos " +comboBox.getValue());
         System.out.println(""+n);
@@ -163,26 +196,54 @@ public class JuegoController{
     public void v1Event(MouseEvent event) {
         if (event.isPrimaryButtonDown()) {
             contNumMov++;
+            puntuacion = puntuacion + 50;
+            if(contNumMov == numMinMov){
+                puntuacion = puntuacion * 2;
+            }
         }
         Mov.setText("" +contNumMov);
+        Score.setText("" +puntuacion);
     }
 
     public void v2Event(MouseEvent event) {
         if (event.isPrimaryButtonDown()) {
             contNumMov++;
+            puntuacion = puntuacion + 50;
+            if(contNumMov == numMinMov){
+                puntuacion = puntuacion * 2;
+            }
         }
         Mov.setText("" +contNumMov);
+        Score.setText("" +puntuacion);
+
     }
 
     public void v3Event(MouseEvent event) {
         if (event.isPrimaryButtonDown()) {
             contNumMov++;
+            puntuacion = puntuacion + 50;
+            if(contNumMov == numMinMov){
+                puntuacion = puntuacion * 2;
+                System.out.println(puntuacion);
+            }
         }
         Mov.setText("" +contNumMov);
+        Score.setText("" +puntuacion);
     }
 
     public void Puntaje(){
-        switch (puntuacion){
+        if(contNumMov == n){
+            puntuacionFinal = puntuacion * 5;
+        } else if (contNumMov == n+5) {
+            puntuacionFinal = puntuacion * 4;
+        } else if (contNumMov == n+10) {
+            puntuacionFinal = puntuacion * 3;
+        } else if (contNumMov == n+15) {
+            puntuacionFinal = puntuacion * 2;
+        } else if (contNumMov == n+20) {
+            puntuacionFinal = puntuacion * 1;
+        }
+        /**switch (puntuacion){
             case 0:
                 if(contNumMov == n){
                     puntuacionFinal = puntuacion * 5;
@@ -202,38 +263,49 @@ public class JuegoController{
                 }
                 break;
             case 3:
-                if(contNumMov == n+10){
+                if(contNumMov == n+15){
                     puntuacionFinal = puntuacion * 2;
                     System.out.println(puntuacionFinal);
                 }
                 break;
             case 4:
-                if(contNumMov == n+15){
+                if(contNumMov == n+20){
                     puntuacionFinal = puntuacion;
                     System.out.println(puntuacionFinal);
                 }
                 break;
+            default:
+                System.out.println(".");
+                break;
+        }**/
+    }
+
+    public void OnActionTerminar(ActionEvent event) throws IOException {
+        if(v3.getChildren().size() == comboBox.getValue()){
+
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/trabajofinalprogramacion/imgs/Inicio.png")));
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/trabajofinalprogramacion/Score.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            ScoreController scoreControl = fxmlLoader.getController();
+            stage.setTitle("Torres de Hanói");
+            stage.getIcons().add(image);
+            stage.setResizable(false);
+            stage.show();
+
+            puntos = Integer.parseInt(Score.getText());
+            System.out.println(puntos);
+
+            scoreControl.llenarCampos(String.valueOf(puntos));
+
+            Stage stage2 = (Stage) this.btnTerminar.getScene().getWindow();
+            stage2.close();
         }
     }
 
-    @FXML
-    protected void OnActionPuntuacion(ActionEvent event) throws IOException {
-
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/trabajofinalprogramacion/imgs/Inicio.png")));
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/trabajofinalprogramacion/Score.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Torres de Hanói");
-        stage.getIcons().add(image);
-        stage.setResizable(false);
-        stage.show();
-
-        Stage stage2 = (Stage) this.btnPuntuacion.getScene().getWindow();
-        stage2.close();
-    }
 
     @FXML
     public void SalirJuego(KeyEvent event){
@@ -241,5 +313,4 @@ public class JuegoController{
             System.exit(0);
         }
     }
-
 }

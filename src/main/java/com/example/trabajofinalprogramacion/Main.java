@@ -1,5 +1,7 @@
 package com.example.trabajofinalprogramacion;
 
+import com.example.trabajofinalprogramacion.controller.ScoreController;
+import com.example.trabajofinalprogramacion.logic.Deserializacion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,6 +29,9 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
+        ScoreController s = new ScoreController();
+        Deserializacion k = new Deserializacion();
         launch();
     }
 }

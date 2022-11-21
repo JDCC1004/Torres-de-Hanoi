@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class UsuarioController {
 
-    private String tfNombre1;
+    private String nombre;
 
     @FXML
     private Label aviso;
@@ -26,7 +26,13 @@ public class UsuarioController {
     private TextField tfNombre;
     @FXML
     private Button btnJugar;
-    public ScoreController controller;
+
+    @FXML
+    void saveNombre(ActionEvent event){
+        nombre = tfNombre.getText();
+        btnJugar.requestFocus();
+        System.out.println("Bienvenido: " +nombre);
+    }
 
     @FXML
      void OnActionJugar(ActionEvent event) throws IOException {
@@ -37,8 +43,9 @@ public class UsuarioController {
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/trabajofinalprogramacion/imgs/Inicio.png")));
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/trabajofinalprogramacion/Juego.fxml"));
-            Parent root = fxmlLoader.load();
-            //ScoreController controller = fxmlLoader.getController();
+            Parent root;
+            root = fxmlLoader.load();
+            JuegoController juegoControl = fxmlLoader.getController();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -47,10 +54,10 @@ public class UsuarioController {
             stage.setResizable(false);
             stage.show();
 
-            tfNombre1 = tfNombre.getText();
-            System.out.println("Bienvenido " +tfNombre1);
+            //nombre = tfNombre.getText();
+            //System.out.println("Bienvenido " +nombre);
 
-            controller.llenarCampos(tfNombre1);
+            juegoControl.llenarNombre(nombre);
 
             Stage stage2 = (Stage) this.btnJugar.getScene().getWindow();
             stage2.close();
