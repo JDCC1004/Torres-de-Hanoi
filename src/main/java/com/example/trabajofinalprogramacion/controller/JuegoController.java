@@ -138,12 +138,23 @@ public class JuegoController{
         }
     }
 
-    public void generarTablas() {
+    public void generarTablas(int [] Label, int i) {
 
-        for (int k = 0; k < comboBox.getValue(); k++) {
+        /**for (int k = 0; k < comboBox.getValue(); k++) {
             Label label = new Label();
             String x = "";
             for (int l = 0; l < k+1; l++) {
+                x = x + "*";
+            }
+            label.setText(x);
+            label.setStyle("-fx-font-size: 15");
+            v1.getChildren().add(label);**/
+
+        if(i != comboBox.getValue()){
+            generarTablas(Label, i + 1);
+            Label label = new Label();
+            String x = "";
+            for (int l = 0; l < i+1; l++){
                 x = x + "*";
             }
             label.setText(x);
@@ -198,7 +209,9 @@ public class JuegoController{
         System.out.println(""+n);
         MovMin.setText("" +n);
         Score.setText("" +puntuacion);
-        generarTablas();
+        int[] Label = new int[comboBox.getValue()];
+        int i = 1;
+        generarTablas(Label, 1-i);
         //recorrerArreglo(Arreglo, 1);
     }
 

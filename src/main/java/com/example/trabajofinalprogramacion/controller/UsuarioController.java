@@ -46,7 +46,7 @@ public class UsuarioController {
      void OnActionJugar(ActionEvent event) throws IOException{
 
         if(tfNombre.getText().isBlank()){
-            aviso.setText("!! Debe ingresar un nombre ¡¡");
+            aviso.setText("¡¡ Debe ingresar un nombre !!");
             tfNombre.requestFocus();
         }else {
 
