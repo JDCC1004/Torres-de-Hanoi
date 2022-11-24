@@ -33,6 +33,8 @@ public class JuegoController{
 
     private int puntos;
 
+    int[] Arreglo = {1,2,3,4,5,6,7};
+
     private Nombre nombre = new Nombre();
 
     @FXML
@@ -150,6 +152,12 @@ public class JuegoController{
         }
     }
 
+    public void determinarGano(int [] Arreglo, int i){
+        if(i != Arreglo.length){
+            System.out.println(Arreglo[i]);
+            determinarGano(Arreglo, i+1);
+        }
+    }
     @FXML
     protected void OnActionResolver(){
         for (int k = 0; k < comboBox.getValue(); k++) {
@@ -191,6 +199,7 @@ public class JuegoController{
         MovMin.setText("" +n);
         Score.setText("" +puntuacion);
         generarTablas();
+        //recorrerArreglo(Arreglo, 1);
     }
 
     public void v1Event(MouseEvent event) {
